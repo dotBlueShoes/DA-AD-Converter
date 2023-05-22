@@ -38,7 +38,7 @@ import wave
 #wf.close()
 
 
-is_main_loop = True
+
     
     
 def menu_change_parameters():
@@ -52,10 +52,10 @@ def menu_play_audio():
 
 def quit():
     print("Quitting application...")
-    is_main_loop = False
+    return False
     
 def main():
-
+    is_main_loop = True
     print(
         "\n"
         "Hello D/A - A/D - Converter! Choose:\n\n"
@@ -65,10 +65,8 @@ def main():
         "q. QUIT\n"
     )
     
-    while(is_main_loop):
-    
+    while is_main_loop:
         user_choice = input("> ")
-    
         match user_choice:
             case "1":
                 menu_change_parameters()
@@ -77,9 +75,9 @@ def main():
             case "3":
                 menu_play_audio()
             case "q":
-                quit()
+                is_main_loop=quit()
             case other:
-                quit()
+                is_main_loop=quit()
     
 
 if __name__ == "__main__":
