@@ -2,6 +2,7 @@ import pyaudio
 import wave
 import os
 
+import make
 import play as p
     
 def menu_change_parameters(audio_parameters: tuple[int, int, int, int]):
@@ -36,6 +37,7 @@ def menu_record_audio(audio_parameters: tuple[int, int, int, int]):
 
     print("\nPicked option -> 2. Record audio file\n")
     seconds_number = int(input(" - Set [Record time (in seconds)]: "))
+    make.record(audio_parameters, seconds_number)
     
     return "" # return the filepath
 
@@ -70,7 +72,7 @@ def main():
 
     CHUNK = 1024
     FORMAT = pyaudio.paInt16
-    CHANNELS = 2
+    CHANNELS = 1
     RATE = 44100
 
     audio_parameters = (CHUNK, FORMAT, CHANNELS, RATE)
