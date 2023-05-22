@@ -1,5 +1,6 @@
 import pyaudio
 import wave
+import os
 
 #CHUNK = 1024
 #FORMAT = pyaudio.paInt16
@@ -38,34 +39,51 @@ import wave
 #wf.close()
 
 
-
-    
     
 def menu_change_parameters():
-    print("a")
+    
+    print("Picked option -> 2. Set audio parameters\n")
+    user_choice = input(" - Set [Frames per buffer]: ")
+    user_choice = input(" - Set [Sampling rate]: ")
+    user_choice = input(" - Set [Number of channels]: ")
+    user_choice = input(" - Set [Format]: ")
     
 def menu_record_audio():
-    print("b")
+
+    print("Picked option -> 2. Record audio file\n")
+    user_choice = input(" - Set [Record time]: ")
+    
+    user_choice_record_time = input()
 
 def menu_play_audio():
-    print("c")
+    print(
+        "Picked option -> 2. Play audio file"
+    )
 
 def quit():
     print("Quitting application...")
     return False
     
-def main():
-    is_main_loop = True
-    print(
-        "\n"
-        "Hello D/A - A/D - Converter! Choose:\n\n"
-        "1. Set audio parameters.\n"
-        "2. Record audio file.\n"
-        "3. Play audio file.\n"
-        "q. QUIT\n"
-    )
+def cls():
+    os.system('cls' if os.name == 'nt' else 'clear')
     
+def main():
+
+    is_main_loop: bool = True
+
     while is_main_loop:
+    
+        cls()
+    
+        print(
+            "\n"
+            "Hello D/A - A/D - Converter! Choose:\n\n"
+            "1. Set audio parameters.\n"
+            "2. Record audio file.\n"
+            "3. Play audio file.\n"
+            "q. QUIT\n"
+        )
+    
         user_choice = input("> ")
         match user_choice:
             case "1":
