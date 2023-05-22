@@ -1,44 +1,6 @@
 import pyaudio
 import wave
 import os
-
-#CHUNK = 1024
-#FORMAT = pyaudio.paInt16
-#CHANNELS = 1
-#RATE = 44100
-#
-#p = pyaudio.PyAudio()
-#
-#stream = p.open(
-#    format = FORMAT,
-#    channels = CHANNELS,
-#    rate = RATE,
-#    input = True,
-#    frames_per_buffer = CHUNK
-#)
-#    
-#print("start recording")
-#
-#frames = []
-#seconds = 3
-#for i in range(0, int(RATE / CHUNK * seconds)):
-#    data = stream.read(CHUNK)
-#    frames.append(data)
-#    
-#print("recording stopped")
-#
-#stream.stop_stream()
-#stream.close()
-#p.terminate()
-#
-#wf = wave.open("output.wav", "wb")
-#wf.setnchannels(CHANNELS)
-#wf.setsampwidth(p.get_sample_size(FORMAT)) 
-#wf.setframerate(RATE)
-#wf.writeframes(b''.join(frames))
-#wf.close()
-
-
     
 def menu_change_parameters():
     
@@ -52,13 +14,11 @@ def menu_record_audio():
 
     print("Picked option -> 2. Record audio file\n")
     user_choice = input(" - Set [Record time]: ")
-    
-    user_choice_record_time = input()
 
 def menu_play_audio():
-    print(
-        "Picked option -> 2. Play audio file"
-    )
+
+    print("Picked option -> 2. Play audio file")
+    user_choice = input(" - Set [.wav filepath]: ")
 
 def quit():
     print("Quitting application...")
@@ -67,17 +27,34 @@ def quit():
 def cls():
     os.system('cls' if os.name == 'nt' else 'clear')
     
+def audio_parameters_string(audio_setup: tuple[int, int, int, int]):
+    chunk, input_format, channel_number, rate = audio_setup
+    return f"Frames Per Buffer: {chunk}\n" + \
+           f"Format: {input_format}\n" + \
+           f"Number of channels: {channel_number}\n" + \
+           f"Sampling rate: {rate}"
+    
 def main():
 
+    CHUNK = 1024
+    FORMAT = pyaudio.paInt16
+    CHANNELS = 2
+    RATE = 44100
+
+    audio_setup = (CHUNK, FORMAT, CHANNELS, RATE)
     is_main_loop: bool = True
 
     while is_main_loop:
     
         cls()
+        
+        #print(, "\n")
     
         print(
             "\n"
-            "Hello D/A - A/D - Converter! Choose:\n\n"
+            "Hello D/A - A/D - Converter! Choose:\n\n",
+            audio_parameters_string(audio_setup),
+            "\n\n"
             "1. Set audio parameters.\n"
             "2. Record audio file.\n"
             "3. Play audio file.\n"
@@ -93,9 +70,9 @@ def main():
             case "3":
                 menu_play_audio()
             case "q":
-                is_main_loop=quit()
+                is_main_loop = quit()
             case other:
-                is_main_loop=quit()
+                is_main_loop = quit()
     
 
 if __name__ == "__main__":
