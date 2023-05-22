@@ -19,4 +19,4 @@ def play(file):
     stream.close()
     p.terminate()
     
-play("output.wav")
+#play("output.wav")
