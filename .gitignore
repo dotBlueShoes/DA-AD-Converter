@@ -1,0 +1,5 @@
+# CACHE
+__pycache__/
+
+# DATA files
+*.wav
