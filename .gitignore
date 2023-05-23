@@ -1,5 +1,8 @@
 # CACHE
 __pycache__/
 
+# IDE
+.idea/
+
 # DATA files
 *.wav
